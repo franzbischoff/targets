@@ -264,11 +264,15 @@ clustermq_class <- R6::R6Class(
     },
     run_clustermq = function() {
       on.exit(try(self$worker_list$finalize()))
+      tar_message_run("debug1")
       self$start_worker_list()
+      tar_message_run("debug2")
       while (self$scheduler$progress$any_remaining()) {
+        tar_message_run("debug3")
         self$iterate()
       }
       if (identical(try(self$worker_list$cleanup()), TRUE)) {
+        tar_message_run("debug4")
         on.exit()
       }
     },
