@@ -263,7 +263,7 @@ clustermq_class <- R6::R6Class(
       )
     },
     run_clustermq = function() {
-      on.exit(try(self$worker_list$finalize()))
+     # on.exit(try(self$worker_list$finalize()))
       tar_message_run("debug1")
       self$start_worker_list()
       tar_message_run("debug2")
